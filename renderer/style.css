@@ -1,0 +1,475 @@
+
+/* GENERAL SETTINGS */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    padding-left: 260px;
+    margin: 0;
+    text-align: center;
+    background: linear-gradient(135deg, #fff5f7, #f5f8ed);
+    color: #536348;
+}
+
+/* HEADINGS */
+
+h1 {
+    color: #d982a0;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #82996b;
+}
+
+h3 {
+    color: #d982a0;
+}
+
+/* INPUT FIELDS */
+
+input,
+select {
+    padding: 12px 15px;
+    width: 250px;
+    max-width: 100%;
+    border: 2px solid #edc5d2;
+    border-radius: 12px;
+    background-color: #fffdf8;
+    margin: 8px;
+    font-size: 14px;
+    color: #536348;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: #d982a0;
+    box-shadow: 0 0 0 3px rgba(217, 130, 160, 0.15);
+}
+
+/* BUTTONS */
+
+button {
+    padding: 12px 22px;
+    background-color: #b7c99b;
+    color: #405137;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+button:hover {
+    background-color: #96ad78;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(120, 145, 95, 0.2);
+}
+
+/* RECIPE AND MEAL PLAN CARDS */
+
+.recipe-card,
+.meal-card {
+    background-color: #fffdf8;
+    border: 2px solid #f4c6d5;
+    border-radius: 20px;
+    padding: 22px;
+    margin: 20px auto;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(200, 150, 165, 0.15);
+    transition: 0.25s;
+}
+
+.recipe-card:hover,
+.meal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(200, 150, 165, 0.22);
+}
+
+/* IMAGES */
+
+img {
+    width: 250px;
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 16px;
+}
+
+/* MEAL SUMMARY */
+
+#mealSummary {
+    background-color: #fce3eb;
+    border: 1px solid #edc5d2;
+    border-radius: 18px;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 450px;
+}
+
+/* GENERAL RECIPE RESULTS */
+
+#result {
+    line-height: 1.7;
+}
+
+#result ul {
+    display: inline-block;
+    text-align: left;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* SIDEBAR NAVIGATION */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 230px;
+    height: 100vh;
+    background-color: #fffdf8;
+    padding: 30px 15px;
+    border-right: 2px solid #f4c6d5;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    box-shadow: 3px 0 12px rgba(200, 150, 165, 0.1);
+}
+
+.sidebar .logo {
+    margin-bottom: 30px;
+    font-size: 25px;
+    color: #d982a0;
+}
+
+.sidebar a {
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    color: #536348;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    background-color: #fce3eb;
+    color: #d982a0;
+}
+
+/* RECIPE FINDER PAGE */
+
+#recipePage {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* WELCOME SECTION */
+
+.welcome-section {
+    background: linear-gradient(135deg, #fce3eb, #e8efd9);
+    padding: 40px 25px;
+    border-radius: 25px;
+    margin-bottom: 30px;
+}
+
+.welcome-section h1 {
+    font-size: 34px;
+    color: #82996b;
+}
+
+.welcome-section p {
+    line-height: 1.7;
+}
+
+.welcome-label {
+    color: #d982a0;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+/* SEARCH AND SUGGESTION SECTIONS */
+
+.search-section,
+.suggestion-section {
+    background-color: #fffdf8;
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #f4c6d5;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(200, 150, 165, 0.1);
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.search-container input {
+    width: 350px;
+    margin: 5px;
+}
+
+/* RECIPE RESULTS GRID */
+
+.results-section {
+    margin-top: 35px;
+}
+
+.results-section #result {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+}
+
+.results-section .recipe-card {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+/* MY MEAL PLANS PAGE */
+
+#mealPlanPage {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* MEAL FORM */
+
+.meal-form-section {
+    background-color: #fffdf8;
+    border: 1px solid #f4c6d5;
+    border-radius: 22px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(200, 150, 165, 0.1);
+}
+
+.meal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 450px;
+    margin: 20px auto 0;
+}
+
+.form-group {
+    width: 100%;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #6f8761;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    margin: 0;
+}
+
+.meal-form button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* MEAL PLAN SUMMARY */
+
+#mealPlanPage #mealSummary {
+    max-width: 450px;
+    margin: 25px auto;
+    background: linear-gradient(135deg, #fce3eb, #e8efd9);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+/* SAVED MEAL PLANS */
+
+.saved-plans-section {
+    margin-top: 35px;
+}
+
+#mealPlanPage #savedPlans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+#mealPlanPage .meal-card {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+/* COOKING INSTRUCTIONS */
+
+.instruction-title {
+    color: #82996b;
+    margin-top: 35px;
+    font-size: 24px;
+}
+
+.instruction-box {
+    width: 100%;
+    max-width: 850px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.instruction-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: #fff8f8;
+    border: 1px solid #f4c6d5;
+    border-radius: 15px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.step-number {
+    min-width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fce3eb;
+    color: #d982a0;
+    font-weight: bold;
+    border-radius: 50%;
+}
+
+.instruction-step p {
+    margin: 3px 0;
+    line-height: 1.8;
+    color: #536348;
+    flex: 1;
+}
+
+/* VIEW RECIPE - FULL WIDTH LAYOUT */
+
+.results-section #result.recipe-detail-view {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.recipe-detail {
+    width: 100%;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.recipe-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.recipe-header h2 {
+    font-size: 32px;
+    color: #82996b;
+    margin-bottom: 25px;
+}
+
+.recipe-header img {
+    width: 350px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 5px solid #b7c99b;
+}
+
+.recipe-content {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 30px;
+    align-items: start;
+    width: 100%;
+}
+
+.ingredients-section,
+.instructions-section {
+    background: #fffdf8;
+    border: 1px solid #f4c6d5;
+    border-radius: 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.ingredients-section h3,
+.instructions-section h3 {
+    text-align: center;
+    color: #d982a0;
+    font-size: 23px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.ingredients-section ul {
+    padding-left: 25px;
+}
+
+.ingredients-section li {
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+/* RESPONSIVE LAYOUT */
+
+@media (max-width: 800px) {
+    #mealPlanPage #savedPlans {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .recipe-card,
+    .meal-card {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    #mealPlanPage #savedPlans {
+        grid-template-columns: 1fr;
+    }
+}
