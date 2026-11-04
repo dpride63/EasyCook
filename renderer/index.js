@@ -3,6 +3,7 @@
 const searchBtn = document.getElementById("searchBtn");
 const result = document.getElementById("result");
 
+
 // Existing Recipe Finder Code
 searchBtn.addEventListener("click", async () => {
 
@@ -246,6 +247,8 @@ suggestBtn.addEventListener("click", async () => {
 
     if (category === "") {
 
+        suggestionResult.classList.remove("recipe-detail-view");
+
         suggestionResult.innerHTML =
             "<p>Please select a category.</p>";
 
@@ -339,6 +342,8 @@ suggestBtn.addEventListener("click", async () => {
 
 
         // Display Suggested Recipe
+        suggestionResult.classList.remove("recipe-detail-view");
+
         suggestionResult.innerHTML = `
 
             <div class="recipe-card">
@@ -354,6 +359,10 @@ suggestBtn.addEventListener("click", async () => {
                 >
 
                 <p>${suggestedMeal.strMeal}</p>
+
+                <button id="viewSuggestedRecipeBtn">
+                    View Recipe
+                </button>
 
                 <button id="saveSuggestedBtn">
                     Add to My Meal Plans
@@ -380,6 +389,131 @@ suggestBtn.addEventListener("click", async () => {
                 );
 
                 window.location.href = "mealplan.html";
+
+            });
+
+
+        // View Suggested Recipe Details
+        document.getElementById("viewSuggestedRecipeBtn")
+            .addEventListener("click", async () => {
+
+                try {
+
+                    const response = await fetch(
+                        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${suggestedMeal.idMeal}`
+                    );
+
+                    if (!response.ok) {
+                        throw new Error("Recipe API request failed");
+                    }
+
+                    const detailData = await response.json();
+
+                    const recipe = detailData.meals?.[0];
+
+                    if (!recipe) {
+                        alert("Recipe details not found.");
+                        return;
+                    }
+
+
+                    // Get Ingredients and Measurements
+                    let ingredientsHTML = "";
+
+                    for (let i = 1; i <= 20; i++) {
+
+                        const ingredient =
+                            recipe[`strIngredient${i}`]?.trim();
+
+                        const measure =
+                            recipe[`strMeasure${i}`]?.trim();
+
+                        if (ingredient) {
+
+                            ingredientsHTML += `
+                                <li>${measure || ""} ${ingredient}</li>
+                            `;
+                        }
+                    }
+
+
+                    // Change to View Recipe Layout
+                    suggestionResult.classList.add("recipe-detail-view");
+
+
+                    // Display Recipe Details
+                    suggestionResult.innerHTML = `
+
+                        <div class="recipe-detail">
+
+                            <div class="recipe-header">
+
+                                <h2>${recipe.strMeal}</h2>
+
+                                <img
+                                    src="${recipe.strMealThumb}"
+                                    alt="${recipe.strMeal}"
+                                >
+
+                            </div>
+
+
+                            <div class="recipe-content">
+
+                                <section class="ingredients-section">
+
+                                    <h3>🥕 Ingredients</h3>
+
+                                    <ul>
+                                        ${ingredientsHTML}
+                                    </ul>
+
+                                </section>
+
+
+                                <section class="instructions-section">
+
+                                    <h3>🍳 Cooking Instructions</h3>
+
+                                    <div class="instruction-box">
+
+                                        ${(recipe.strInstructions || "Instructions unavailable.")
+                                            .split(/\r?\n/)
+                                            .filter(step => step.trim() !== "")
+                                            .map((step, index) => `
+
+                                                <div class="instruction-step">
+
+                                                    <span class="step-number">
+                                                        ${index + 1}
+                                                    </span>
+
+                                                    <p>
+                                                        ${step.trim().replace(/^\d+[\.\)]\s*/, "")}
+                                                    </p>
+
+                                                </div>
+
+                                            `).join("")}
+
+                                    </div>
+
+                                </section>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                } catch (error) {
+
+                    console.log(error);
+
+                    alert("Failed to load recipe details.");
+
+                }
 
             });
 
