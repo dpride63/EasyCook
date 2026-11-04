@@ -1,3 +1,4 @@
+
 // Load saved meal plans from Local Storage
 let mealPlans = JSON.parse(localStorage.getItem("mealPlans")) || [];
 let editIndex = -1;
@@ -84,6 +85,7 @@ saveMealBtn.addEventListener("click", () => {
         return;
     }
 
+    // Add Meal Plan
     if (editIndex === -1) {
         mealPlans.push(newMeal);
     } else {
