@@ -1,4 +1,3 @@
-
 // Load saved meal plans from Local Storage
 let mealPlans = JSON.parse(localStorage.getItem("mealPlans")) || [];
 let editIndex = -1;
