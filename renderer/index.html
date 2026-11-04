@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyCook</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <h2 class="logo"> EasyCook</h2>
+
+        <a href="index.html" class="active"> Recipe Finder</a>
+        <a href="mealplan.html"> My Meal Plans</a>
+    </nav>
+
+    <!-- Main Recipe Finder Page -->
+    <main id="recipePage">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <p class="welcome-label">WELCOME TO EASYCOOK</p>
+
+            <h1>Discover Your Next Favourite Meal! </h1>
+
+            <p>
+                Find delicious recipes, explore new flavours
+                and plan your meals with EasyCook.
+            </p>
+        </section>
+
+        <!-- Category Suggestion Section -->
+        <section class="suggestion-section">
+
+            <h2> Recipe Inspiration</h2>
+
+            <p>Not sure what to cook? Let EasyCook suggest something!</p>
+
+            <select id="categoryInput">
+                <option value="">Select a category</option>
+                <option value="Seafood">Seafood</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Dessert">Dessert</option>
+            </select>
+
+            <button id="suggestBtn">Get Suggestions</button>
+
+            <div id="suggestionResult"></div>
+
+        </section>
+
+        <!-- Search Recipe Section -->
+        <section class="search-section">
+
+            <h2> Find Your Recipe</h2>
+
+            <p>Search for your favourite meal or ingredient.</p>
+
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="SearchInput"
+                    placeholder="Enter ingredient or recipe name..."
+                >
+
+                <button id="searchBtn">Search Recipe</button>
+            </div>
+
+        </section>
+
+        <!-- Recipe Search Results -->
+        <section class="results-section">
+
+            <h2>🍽️ Recipe Results</h2>
+
+            <div id="result"></div>
+
+        </section>
+
+    </main>
+
+    <script src="index.js"></script>
+
+</body>
+</html>
