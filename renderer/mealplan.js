@@ -32,10 +32,101 @@ function displayMealPlans() {
             <p>Date: ${meal.date}</p>
             <p>Meal Type: ${meal.type}</p>
             <p>Servings: ${meal.servings}</p>
+            <button onclick="viewMealRecipe(${index})">View Recipe</button>
             <button onclick="editMealPlan(${index})">Edit</button>
             <button onclick="deleteMealPlan(${index})">Delete</button>
         </div>
     `).join("");
+}
+
+// View Recipe Details
+async function viewMealRecipe(index) {
+
+    const meal = mealPlans[index];
+
+    try {
+
+        const response = await fetch(
+            `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(meal.name)}`
+        );
+
+        if (!response.ok) {
+            throw new Error("API request failed");
+        }
+
+        const data = await response.json();
+
+        if (!data.meals) {
+            alert("Recipe details not found.");
+            return;
+        }
+
+        // Find matching recipe
+        const recipe = data.meals.find(
+            item => item.strMeal.toLowerCase() === meal.name.toLowerCase()
+        );
+
+        if (!recipe) {
+            alert("Recipe details not found.");
+            return;
+        }
+
+        // Get Ingredients and Measurements
+        let ingredientsHTML = "";
+
+        for (let i = 1; i <= 20; i++) {
+
+            const ingredient =
+                recipe[`strIngredient${i}`]?.trim();
+
+            const measure =
+                recipe[`strMeasure${i}`]?.trim();
+
+            if (ingredient) {
+
+                ingredientsHTML += `
+                    <li>${measure || ""} ${ingredient}</li>
+                `;
+            }
+        }
+
+        // Display Recipe Details
+        document.getElementById("savedPlans").innerHTML = `
+
+            <div class="recipe-detail">
+
+                <h2>${recipe.strMeal}</h2>
+
+                <img
+                    src="${recipe.strMealThumb}"
+                    alt="${recipe.strMeal}"
+                    width="250"
+                >
+
+                <h3> Ingredients</h3>
+
+                <ul>
+                    ${ingredientsHTML}
+                </ul>
+
+                <h3> Cooking Instructions</h3>
+
+                <p>${recipe.strInstructions}</p>
+
+                <button onclick="displayMealPlans()">
+                    Back to My Meal Plans
+                </button>
+
+            </div>
+        `;
+
+    } catch (error) {
+
+        console.log(error);
+
+        alert("Failed to load recipe details.");
+
+    }
 }
 
 // Calculate Total Servings
